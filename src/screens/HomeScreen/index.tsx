@@ -1,6 +1,6 @@
 import { AppButton } from '@/components/AppButton';
 import { AppText } from '@/components/AppText';
-import { useHomeStackNavigation } from '@/navigations/MainTabs/HomeStack/hooks';
+import { useHomeStackNavigation } from '@/navigations/MainTabs/HomeStack';
 import { View } from 'react-native';
 
 export const HomeScreen = () => {
