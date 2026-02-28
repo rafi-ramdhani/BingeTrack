@@ -1,5 +1,6 @@
 import { WatchlistScreen } from '@/screens/WatchlistScreen';
 import { MovieDetailScreen } from '@/screens/MovieDetailScreen';
+import { stackScreenOptions } from '@/navigations/options';
 import { WatchlistStack } from './stack';
 
 export { WatchlistStack } from './stack';
@@ -9,7 +10,7 @@ export type { WatchlistStackNavigationProp } from './hooks';
 
 export const WatchlistNavigator = () => {
   return (
-    <WatchlistStack.Navigator screenOptions={{ headerShown: false }}>
+    <WatchlistStack.Navigator screenOptions={stackScreenOptions}>
       <WatchlistStack.Screen
         name="WatchlistScreen"
         component={WatchlistScreen}

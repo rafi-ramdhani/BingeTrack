@@ -1,5 +1,6 @@
 import { MainTabsNavigator } from './MainTabs';
 import { NavigationContainer } from '@react-navigation/native';
+import { stackScreenOptions } from './options';
 import { RootStack } from './stack';
 
 export { RootStack } from './stack';
@@ -10,7 +11,7 @@ export type { RootNavigationProp } from './hooks';
 export const RootNavigator = () => {
   return (
     <NavigationContainer>
-      <RootStack.Navigator screenOptions={{ headerShown: false }}>
+      <RootStack.Navigator screenOptions={stackScreenOptions}>
         <RootStack.Screen name="MainTabs" component={MainTabsNavigator} />
       </RootStack.Navigator>
     </NavigationContainer>
