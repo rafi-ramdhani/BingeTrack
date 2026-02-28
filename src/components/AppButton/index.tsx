@@ -1,5 +1,5 @@
 import { Pressable, PressableProps, StyleSheet } from 'react-native';
-import AppText from '../AppText';
+import { AppText } from '../AppText';
 import { ReactNode } from 'react';
 import { colors, radii, spacing } from '@/themes';
 
@@ -8,11 +8,11 @@ interface AppButtonProps extends PressableProps {
   children?: ReactNode;
 }
 
-export default function AppButton({
+export const AppButton = ({
   children,
   variant = 'primary',
   ...props
-}: AppButtonProps) {
+}: AppButtonProps) => {
   return (
     <Pressable
       {...props}
@@ -25,7 +25,7 @@ export default function AppButton({
       {() => <AppText>{children}</AppText>}
     </Pressable>
   );
-}
+};
 
 const styles = StyleSheet.create({
   base: {
