@@ -1,3 +1,4 @@
+import { colors } from '@/themes';
 import { StyleSheet, Text, TextProps } from 'react-native';
 
 interface AppTextProps extends TextProps {}
@@ -12,6 +13,6 @@ export default function AppText({ children, ...props }: AppTextProps) {
 
 const styles = StyleSheet.create({
   base: {
-    color: 'black',
+    color: colors.textPrimary,
   },
 });

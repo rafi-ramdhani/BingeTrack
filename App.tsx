@@ -1,5 +1,7 @@
+import AppButton from '@/components/AppButton';
+import { colors } from '@/themes';
 import { useEffect, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 export default function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,15 +14,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Pressable
-        style={({ pressed }) => [
-          styles.button,
-          pressed && styles.buttonPressed,
-        ]}
-        onPress={() => setIsOpen(prev => !prev)}
-      >
-        <Text>Open</Text>
-      </Pressable>
+      <AppButton onPress={() => setIsOpen(prev => !prev)}>Something</AppButton>
     </View>
   );
 }
@@ -30,6 +24,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: colors.background,
   },
   button: {
     borderRadius: 8,
