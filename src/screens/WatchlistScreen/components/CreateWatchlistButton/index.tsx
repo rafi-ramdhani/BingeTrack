@@ -1,5 +1,5 @@
 import { useRootNavigation } from '@/navigations';
-import { colors, spacing } from '@/themes';
+import { colors, radii, spacing } from '@/themes';
 import { Pressable, StyleSheet } from 'react-native';
 import PlusIcon from '@/assets/plus-icon.svg';
 
@@ -23,15 +23,10 @@ const styles = StyleSheet.create({
     bottom: spacing.lg,
     width: 56,
     height: 56,
-    borderRadius: 28,
+    borderRadius: radii.full,
     backgroundColor: colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  buttonLabel: {
-    fontSize: 36,
-    lineHeight: 36,
-    fontWeight: '700',
   },
   pressed: {
     opacity: 0.2,

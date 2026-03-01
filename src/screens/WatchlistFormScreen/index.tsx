@@ -1,114 +1,40 @@
 import { AppButton } from '@/components/AppButton';
-import { AppText } from '@/components/AppText';
-import { createWatchlist, getWatchlistById, updateWatchlist } from '@/database';
-import { useRootNavigation, useRootRoute } from '@/navigations';
-import { colors, radii, spacing } from '@/themes';
-import { useEffect, useState } from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
+import { AppInput } from '@/components/AppInput';
+import { useRootNavigation } from '@/navigations';
+import { colors, spacing } from '@/themes';
+import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { WatchlistFormScreenHeader } from './components/WatchlistFormScreenHeader';
+import { useWatchlist } from './hooks/useWatchlist';
+import { useSubmitWatchlist } from './hooks/useSubmitWatchlist';
 
 export const WatchlistFormScreen = () => {
-  const navigation = useRootNavigation();
-  const route = useRootRoute<'WatchlistForm'>();
-  const watchlistId = route.params?.watchlistId;
+  const { goBack } = useRootNavigation();
 
-  const [title, setTitle] = useState('');
-  const [rating, setRating] = useState('');
-  const [review, setReview] = useState('');
-  const [message, setMessage] = useState('');
+  const { watchlist, editWatchlist } = useWatchlist();
 
-  useEffect(() => {
-    if (!watchlistId) {
-      return;
-    }
-
-    const watchlist = getWatchlistById(watchlistId);
-    if (!watchlist) {
-      setMessage('Watchlist not found.');
-      return;
-    }
-
-    setTitle(watchlist.title);
-    setRating(watchlist.rating?.toString() ?? '');
-    setReview(watchlist.review ?? '');
-  }, [watchlistId]);
-
-  const handleSubmit = () => {
-    const trimmedTitle = title.trim();
-    if (!trimmedTitle) {
-      setMessage('Title is required.');
-      return;
-    }
-
-    const parsedRating =
-      rating.trim() === '' ? null : Number.parseFloat(rating.trim());
-    if (parsedRating !== null && Number.isNaN(parsedRating)) {
-      setMessage('Rating must be a valid number.');
-      return;
-    }
-
-    try {
-      if (watchlistId) {
-        updateWatchlist({
-          id: watchlistId,
-          title: trimmedTitle,
-          rating: parsedRating,
-          review: review.trim() || null,
-        });
-      } else {
-        createWatchlist({
-          title: trimmedTitle,
-          rating: parsedRating,
-          review: review.trim() || null,
-        });
-      }
-
-      navigation.goBack();
-    } catch (error) {
-      console.error('Failed to save watchlist', error);
-      setMessage('Failed to save watchlist.');
-    }
-  };
+  const submitWatchlist = useSubmitWatchlist();
 
   return (
     <SafeAreaView style={styles.container}>
       <WatchlistFormScreenHeader />
 
-      <TextInput
-        value={title}
-        onChangeText={setTitle}
+      <AppInput
+        value={watchlist?.title ?? ''}
+        onChangeText={value => editWatchlist({ key: 'title', value })}
         placeholder="Title"
         placeholderTextColor={colors.textMuted}
-        autoFocus={!watchlistId}
-        style={styles.input}
+        autoFocus={!watchlist}
       />
-
-      <TextInput
-        value={rating}
-        onChangeText={setRating}
-        placeholder="Rating (optional)"
-        placeholderTextColor={colors.textMuted}
-        keyboardType="decimal-pad"
-        style={styles.input}
-      />
-
-      <TextInput
-        value={review}
-        onChangeText={setReview}
-        placeholder="Review (optional)"
-        placeholderTextColor={colors.textMuted}
-        multiline
-        style={[styles.input, styles.reviewInput]}
-      />
-
-      {message ? <AppText>{message}</AppText> : null}
 
       <View style={styles.buttonsContainer}>
-        <AppButton style={styles.buttonSave} onPress={handleSubmit}>
+        <AppButton
+          style={styles.buttonSave}
+          onPress={() => submitWatchlist(watchlist)}
+        >
           Save
         </AppButton>
-        <AppButton variant="outlined" onPress={() => navigation.goBack()}>
+        <AppButton variant="outlined" onPress={goBack}>
           Cancel
         </AppButton>
       </View>
@@ -122,19 +48,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
     paddingHorizontal: spacing.xxl,
     gap: spacing.md,
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: colors.border,
-    borderRadius: radii.xs,
-    color: colors.textPrimary,
-    backgroundColor: colors.surface,
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm,
-  },
-  reviewInput: {
-    minHeight: 120,
-    textAlignVertical: 'top',
   },
   buttonsContainer: {
     flexDirection: 'row',
