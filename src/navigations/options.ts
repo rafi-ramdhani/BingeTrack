@@ -8,5 +8,9 @@ export const stackScreenOptions: NativeStackNavigationOptions = {
 
 export const tabScreenOptions: BottomTabNavigationOptions = {
   headerShown: false,
-  tabBarStyle: { backgroundColor: colors.background },
+  tabBarStyle: {
+    backgroundColor: colors.background,
+    borderTopColor: colors.border,
+  },
+  tabBarLabel: 'Watchlist',
 };

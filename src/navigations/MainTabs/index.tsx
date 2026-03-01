@@ -1,4 +1,3 @@
-import { HomeNavigator } from './HomeStack';
 import { tabScreenOptions } from '../options';
 import { WatchlistNavigator } from './WatchlistStack';
 import { MainTabs } from './stack';
@@ -11,7 +10,6 @@ export type { MainTabsNavigationProp } from './hooks';
 export const MainTabsNavigator = () => {
   return (
     <MainTabs.Navigator screenOptions={tabScreenOptions}>
-      <MainTabs.Screen name="HomeStack" component={HomeNavigator} />
       <MainTabs.Screen name="WatchlistStack" component={WatchlistNavigator} />
     </MainTabs.Navigator>
   );

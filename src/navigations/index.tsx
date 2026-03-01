@@ -1,5 +1,5 @@
-import { MainTabsNavigator } from './MainTabs';
 import { NavigationContainer } from '@react-navigation/native';
+import { MainTabsNavigator } from './MainTabs';
 import { stackScreenOptions } from './options';
 import { RootStack } from './stack';
 
