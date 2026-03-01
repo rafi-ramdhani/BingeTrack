@@ -1,16 +1,25 @@
-import { Pressable, PressableProps, StyleSheet } from 'react-native';
+import {
+  Pressable,
+  PressableProps,
+  StyleProp,
+  StyleSheet,
+  TextStyle,
+} from 'react-native';
 import { AppText } from '../AppText';
 import { ReactNode } from 'react';
 import { colors, radii, spacing } from '@/themes';
 
 interface AppButtonProps extends PressableProps {
-  variant?: 'primary';
+  variant?: 'primary' | 'outlined';
   children?: ReactNode;
+  textStyle?: StyleProp<TextStyle>;
 }
 
 export const AppButton = ({
   children,
   variant = 'primary',
+  textStyle,
+  style,
   ...props
 }: AppButtonProps) => {
   return (
@@ -19,17 +28,17 @@ export const AppButton = ({
       style={({ pressed }) => [
         styles.base,
         styles[variant],
+        typeof style === 'function' ? style({ pressed }) : style,
         pressed && styles.pressed,
       ]}
     >
-      {() => <AppText>{children}</AppText>}
+      <AppText style={textStyle}>{children}</AppText>
     </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
   base: {
-    width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: radii.xs,
@@ -37,7 +46,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.lg,
   },
   primary: {
-    height: 56,
+    height: 40,
+  },
+  outlined: {
+    height: 40,
+    borderWidth: 1,
+    borderColor: colors.border,
+    backgroundColor: 'transparent',
   },
   pressed: {
     opacity: 0.2,

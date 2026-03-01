@@ -4,8 +4,9 @@ import { createWatchlist, getWatchlistById, updateWatchlist } from '@/database';
 import { useRootNavigation, useRootRoute } from '@/navigations';
 import { colors, radii, spacing } from '@/themes';
 import { useEffect, useState } from 'react';
-import { StyleSheet, TextInput } from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { WatchlistFormScreenHeader } from './components/WatchlistFormScreenHeader';
 
 export const WatchlistFormScreen = () => {
   const navigation = useRootNavigation();
@@ -72,7 +73,7 @@ export const WatchlistFormScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <AppText>{watchlistId ? 'Edit Watchlist' : 'Create Watchlist'}</AppText>
+      <WatchlistFormScreenHeader />
 
       <TextInput
         value={title}
@@ -103,8 +104,14 @@ export const WatchlistFormScreen = () => {
 
       {message ? <AppText>{message}</AppText> : null}
 
-      <AppButton onPress={handleSubmit}>Save</AppButton>
-      <AppButton onPress={() => navigation.goBack()}>Cancel</AppButton>
+      <View style={styles.buttonsContainer}>
+        <AppButton style={styles.buttonSave} onPress={handleSubmit}>
+          Save
+        </AppButton>
+        <AppButton variant="outlined" onPress={() => navigation.goBack()}>
+          Cancel
+        </AppButton>
+      </View>
     </SafeAreaView>
   );
 };
@@ -113,7 +120,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background,
-    padding: spacing.lg,
+    paddingHorizontal: spacing.xxl,
     gap: spacing.md,
   },
   input: {
@@ -128,5 +135,12 @@ const styles = StyleSheet.create({
   reviewInput: {
     minHeight: 120,
     textAlignVertical: 'top',
+  },
+  buttonsContainer: {
+    flexDirection: 'row',
+    gap: spacing.md,
+  },
+  buttonSave: {
+    flex: 1,
   },
 });
