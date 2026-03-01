@@ -8,7 +8,7 @@ import {
 } from '@/database';
 import { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, TextInput, View } from 'react-native';
-import { colors, spacing } from '@/themes';
+import { colors, radii, spacing } from '@/themes';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export const HomeScreen = () => {
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     height: 48,
     borderWidth: 1,
     borderColor: colors.border,
-    borderRadius: 10,
+    borderRadius: radii.xs,
     paddingHorizontal: spacing.md,
     color: colors.textPrimary,
     backgroundColor: colors.surface,
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   listItem: {
     borderWidth: 1,
     borderColor: colors.border,
-    borderRadius: 10,
+    borderRadius: radii.xs,
     padding: spacing.md,
     gap: spacing.xs,
   },
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderWidth: 1,
     borderColor: colors.danger,
-    borderRadius: 10,
+    borderRadius: radii.xs,
   },
   deletePressed: {
     opacity: 0.5,

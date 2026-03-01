@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { initDatabase } from './migrations';
+import { initDatabase } from '../migrations';
 
 export const useDatabaseReady = () => {
   const [isDatabaseReady, setIsDatabaseReady] = useState(false);

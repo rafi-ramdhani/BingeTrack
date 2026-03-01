@@ -1,25 +1,34 @@
-import { runSql } from './client';
-import { DB_TABLES } from './tables';
+import { runSql } from '../core/client';
+import { DB_TABLES } from '../core/tables';
 
 type LastInsertIdRow = { id: number };
 
 export type CreateWatchlistInput = {
   title: string;
+  rating?: number | null;
+  review?: string | null;
 };
 
 export type WatchlistItem = {
   id: number;
   title: string;
+  rating: number | null;
+  review: string | null;
   createdAt: string;
 };
 
 export const createWatchlist = (input: CreateWatchlistInput): number => {
   runSql(
     `
-      INSERT INTO ${DB_TABLES.WATCHLIST_ITEMS} (title, createdAt)
-      VALUES (?, ?);
+      INSERT INTO ${DB_TABLES.WATCHLIST_ITEMS} (title, rating, review, createdAt)
+      VALUES (?, ?, ?, ?);
     `,
-    [input.title, new Date().toISOString()]
+    [
+      input.title,
+      input.rating ?? null,
+      input.review ?? null,
+      new Date().toISOString(),
+    ]
   );
 
   const result = runSql<LastInsertIdRow>('SELECT last_insert_rowid() AS id;');
@@ -35,7 +44,7 @@ export const createWatchlist = (input: CreateWatchlistInput): number => {
 export const getAllWatchlists = (): WatchlistItem[] => {
   const result = runSql<WatchlistItem>(
     `
-      SELECT id, title, createdAt
+      SELECT id, title, rating, review, createdAt
       FROM ${DB_TABLES.WATCHLIST_ITEMS}
       ORDER BY createdAt DESC;
     `

@@ -1,6 +1,21 @@
-export { getDatabase, queryAll, queryFirst, runSql, runSqlAsync } from './client';
-export { useDatabaseReady } from './hooks';
+export { DB_TABLES, getDatabase, queryAll, queryFirst, runSql, runSqlAsync, useDatabaseReady } from './core';
 export { initDatabase } from './migrations';
-export { DB_TABLES } from './tables';
-export { createWatchlist, deleteWatchlist, getAllWatchlists } from './watchlist';
-export type { CreateWatchlistInput, WatchlistItem } from './watchlist';
+export {
+  createCast,
+  createGenre,
+  createWatchlist,
+  deleteCast,
+  deleteGenre,
+  deleteWatchlist,
+  getAllCasts,
+  getAllGenres,
+  getAllWatchlists,
+} from './services';
+export type {
+  Cast,
+  CreateCastInput,
+  CreateGenreInput,
+  CreateWatchlistInput,
+  Genre,
+  WatchlistItem,
+} from './services';
