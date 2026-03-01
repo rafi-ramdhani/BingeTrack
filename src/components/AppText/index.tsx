@@ -1,8 +1,8 @@
-import { colors, typography } from '@/themes';
+import { colors, typography, type TypographyKey } from '@/themes';
 import { StyleSheet, Text, TextProps } from 'react-native';
 
 interface AppTextProps extends TextProps {
-  variant?: 'title' | 'body' | 'meta' | 'caption';
+  variant?: TypographyKey;
 }
 
 export const AppText = ({

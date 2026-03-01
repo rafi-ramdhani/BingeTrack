@@ -5,6 +5,7 @@ import DeleteIcon from '@/assets/trash-icon.svg';
 import ArrowLeftIcon from '@/assets/arrow-left-icon.svg';
 import { colors, spacing } from '@/themes';
 import { deleteWatchlist } from '@/database';
+import { AppHeaderWrapper } from '@/components/AppHeaderWrapper';
 
 export const WatchlistFormScreenHeader = () => {
   const route = useRootRoute<'WatchlistForm'>();
@@ -20,7 +21,7 @@ export const WatchlistFormScreenHeader = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <AppHeaderWrapper style={styles.container}>
       <View style={styles.content}>
         <Pressable
           style={({ pressed }) => [pressed && styles.pressed]}
@@ -28,7 +29,7 @@ export const WatchlistFormScreenHeader = () => {
         >
           <ArrowLeftIcon width={24} height={24} color={colors.textPrimary} />
         </Pressable>
-        <AppText variant="title">
+        <AppText variant="screenTitle">
           {watchlistId ? 'Edit Watchlist' : 'Add Watchlist'}
         </AppText>
       </View>
@@ -43,16 +44,13 @@ export const WatchlistFormScreenHeader = () => {
           </Pressable>
         )}
       </View>
-    </View>
+    </AppHeaderWrapper>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
-    height: 40,
   },
   content: {
     flexDirection: 'row',

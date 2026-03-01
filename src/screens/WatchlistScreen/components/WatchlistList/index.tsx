@@ -1,4 +1,4 @@
-import { FlatList, Pressable, StyleSheet } from 'react-native';
+import { FlatList, Pressable, StyleSheet, View } from 'react-native';
 import { useWatchlists } from '../../hooks/useWatchlists';
 import { useRootNavigation } from '@/navigations';
 import { colors, radii, spacing } from '@/themes';
@@ -8,6 +8,14 @@ export const WatchlistList = () => {
   const { navigate } = useRootNavigation();
 
   const { watchlists } = useWatchlists();
+
+  if (watchlists.length <= 0) {
+    return (
+      <View style={styles.listEmpty}>
+        <AppText style={styles.listEmptyText}>There is no watchlist :(</AppText>
+      </View>
+    );
+  }
 
   return (
     <FlatList
@@ -21,8 +29,7 @@ export const WatchlistList = () => {
           style={({ pressed }) => [styles.listItem, pressed && styles.pressed]}
           onPress={() => navigate('WatchlistForm', { watchlistId: item.id })}
         >
-          <AppText>{item.title}</AppText>
-          <AppText>{item.rating ?? '-'}</AppText>
+          <AppText variant="title">{item.title}</AppText>
         </Pressable>
       )}
     />
@@ -30,9 +37,16 @@ export const WatchlistList = () => {
 };
 
 const styles = StyleSheet.create({
+  listEmpty: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  listEmptyText: {
+    color: colors.textSecondary,
+  },
   listContent: {
     gap: spacing.md,
-    paddingHorizontal: spacing.xxl,
     paddingBottom: spacing.lg,
   },
   listItem: {
@@ -41,6 +55,7 @@ const styles = StyleSheet.create({
     borderRadius: radii.xs,
     padding: spacing.md,
     gap: spacing.xs,
+    height: 80,
   },
   pressed: {
     opacity: 0.2,
