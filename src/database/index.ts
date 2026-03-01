@@ -10,6 +10,8 @@ export {
   getAllCasts,
   getAllGenres,
   getAllWatchlists,
+  getWatchlistById,
+  updateWatchlist,
 } from './services';
 export type {
   Cast,
@@ -17,5 +19,6 @@ export type {
   CreateGenreInput,
   CreateWatchlistInput,
   Genre,
+  UpdateWatchlistInput,
   WatchlistItem,
 } from './services';

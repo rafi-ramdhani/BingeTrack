@@ -9,6 +9,13 @@ export type CreateWatchlistInput = {
   review?: string | null;
 };
 
+export type UpdateWatchlistInput = {
+  id: number;
+  title: string;
+  rating?: number | null;
+  review?: string | null;
+};
+
 export type WatchlistItem = {
   id: number;
   title: string;
@@ -50,6 +57,31 @@ export const getAllWatchlists = (): WatchlistItem[] => {
     `
   );
   return result.rows._array;
+};
+
+export const getWatchlistById = (id: number): WatchlistItem | null => {
+  const result = runSql<WatchlistItem>(
+    `
+      SELECT id, title, rating, review, createdAt
+      FROM ${DB_TABLES.WATCHLIST_ITEMS}
+      WHERE id = ?
+      LIMIT 1;
+    `,
+    [id]
+  );
+
+  return result.rows.item(0) ?? null;
+};
+
+export const updateWatchlist = (input: UpdateWatchlistInput): void => {
+  runSql(
+    `
+      UPDATE ${DB_TABLES.WATCHLIST_ITEMS}
+      SET title = ?, rating = ?, review = ?
+      WHERE id = ?;
+    `,
+    [input.title, input.rating ?? null, input.review ?? null, input.id]
+  );
 };
 
 export const deleteWatchlist = (id: number): void => {

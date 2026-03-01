@@ -1,5 +1,4 @@
 import { WatchlistScreen } from '@/screens/WatchlistScreen';
-import { MovieDetailScreen } from '@/screens/MovieDetailScreen';
 import { stackScreenOptions } from '@/navigations/options';
 import { WatchlistStack } from './stack';
 
@@ -14,10 +13,6 @@ export const WatchlistNavigator = () => {
       <WatchlistStack.Screen
         name="WatchlistScreen"
         component={WatchlistScreen}
-      />
-      <WatchlistStack.Screen
-        name="MovieDetailScreen"
-        component={MovieDetailScreen}
       />
     </WatchlistStack.Navigator>
   );
