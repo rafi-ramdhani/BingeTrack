@@ -13,5 +13,5 @@ export const tabScreenOptions: BottomTabNavigationOptions = {
     borderTopColor: colors.border,
   },
   tabBarActiveTintColor: colors.primary,
-  tabBarLabel: 'Watchlist',
+  tabBarInactiveTintColor: colors.textSecondary,
 };
