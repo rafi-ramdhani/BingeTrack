@@ -32,6 +32,8 @@ export const WatchlistList = () => {
 const styles = StyleSheet.create({
   listContent: {
     gap: spacing.md,
+    paddingHorizontal: spacing.xxl,
+    paddingBottom: spacing.lg,
   },
   listItem: {
     borderWidth: 1,

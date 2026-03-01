@@ -50,6 +50,7 @@ export const WatchlistFormScreenHeader = () => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'space-between',
     height: 40,
   },

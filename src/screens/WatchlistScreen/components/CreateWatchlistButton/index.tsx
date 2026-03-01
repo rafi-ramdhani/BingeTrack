@@ -1,16 +1,17 @@
-import { AppText } from '@/components/AppText';
 import { useRootNavigation } from '@/navigations';
 import { colors, spacing } from '@/themes';
 import { Pressable, StyleSheet } from 'react-native';
+import PlusIcon from '@/assets/plus-icon.svg';
 
 export const CreateWatchlistButton = () => {
   const { navigate } = useRootNavigation();
+
   return (
     <Pressable
       onPress={() => navigate('WatchlistForm')}
       style={({ pressed }) => [styles.button, pressed && styles.pressed]}
     >
-      <AppText style={styles.buttonLabel}>+</AppText>
+      <PlusIcon width={24} height={24} color={colors.textPrimary} />
     </Pressable>
   );
 };
