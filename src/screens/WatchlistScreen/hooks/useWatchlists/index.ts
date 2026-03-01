@@ -16,5 +16,5 @@ export const useWatchlists = () => {
     }, []),
   );
 
-  return { watchlists };
+  return { watchlists, reloadWatchlists: loadWatchlists };
 };

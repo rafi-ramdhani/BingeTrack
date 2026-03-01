@@ -1,10 +1,35 @@
 import { colors, radii, spacing } from '@/themes';
+import { useState } from 'react';
 import { StyleSheet, TextInput, TextInputProps } from 'react-native';
 
 interface AppInputProps extends TextInputProps {}
 
-export const AppInput = ({ style, ...props }: AppInputProps) => {
-  return <TextInput {...props} style={[styles.base, style]} />;
+export const AppInput = ({
+  style,
+  cursorColor,
+  selectionColor,
+  onFocus,
+  onBlur,
+  ...props
+}: AppInputProps) => {
+  const [isFocused, setIsFocused] = useState(false);
+
+  return (
+    <TextInput
+      {...props}
+      cursorColor={cursorColor ?? colors.primary}
+      selectionColor={selectionColor ?? colors.primary}
+      onFocus={event => {
+        setIsFocused(true);
+        onFocus?.(event);
+      }}
+      onBlur={event => {
+        setIsFocused(false);
+        onBlur?.(event);
+      }}
+      style={[styles.base, isFocused && styles.focused, style]}
+    />
+  );
 };
 
 const styles = StyleSheet.create({
@@ -17,5 +42,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surface,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
+  },
+  focused: {
+    borderColor: colors.primary,
   },
 });
