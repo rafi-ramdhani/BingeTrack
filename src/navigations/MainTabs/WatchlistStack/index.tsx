@@ -1,10 +1,10 @@
 import { WatchlistScreen } from '@/screens/WatchlistScreen';
 import { stackScreenOptions } from '@/navigations/options';
-import { WatchlistStack } from './stack';
+import { WatchlistStack } from './stacks';
 
-export { WatchlistStack } from './stack';
+export { WatchlistStack } from './stacks';
 export { useWatchlistStackNavigation, useWatchlistStackRoute } from './hooks';
-export type { WatchlistStackParamList } from './type';
+export type { WatchlistStackParamList } from './types';
 export type { WatchlistStackNavigationProp } from './hooks';
 
 export const WatchlistNavigator = () => {

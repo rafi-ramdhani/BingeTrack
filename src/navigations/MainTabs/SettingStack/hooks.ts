@@ -1,6 +1,6 @@
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import type { SettingStackParamList } from './type';
+import type { SettingStackParamList } from './types';
 
 export type SettingStackNavigationProp =
   NativeStackNavigationProp<SettingStackParamList>;

@@ -2,13 +2,13 @@ import { colors } from '@/themes';
 import { tabScreenOptions } from '../options';
 import { SettingNavigator } from './SettingStack';
 import { WatchlistNavigator } from './WatchlistStack';
-import { MainTabs } from './stack';
+import { MainTabs } from './stacks';
 import WatchlistIcon from '@/assets/watchlist-icon.svg';
 import SettingIcon from '@/assets/setting-icon.svg';
 
-export { MainTabs } from './stack';
+export { MainTabs } from './stacks';
 export { useMainTabsNavigation, useMainTabsRoute } from './hooks';
-export type { MainTabsParamList } from './type';
+export type { MainTabsParamList } from './types';
 export type { MainTabsNavigationProp } from './hooks';
 
 export const MainTabsNavigator = () => {

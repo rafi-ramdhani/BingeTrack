@@ -1,4 +1,4 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import type { SettingStackParamList } from './type';
+import type { SettingStackParamList } from './types';
 
 export const SettingStack = createNativeStackNavigator<SettingStackParamList>();

@@ -2,11 +2,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { MainTabsNavigator } from './MainTabs';
 import { stackScreenOptions } from './options';
 import { WatchlistFormScreen } from '@/screens/WatchlistFormScreen';
-import { RootStack } from './stack';
+import { RootStack } from './stacks';
 
-export { RootStack } from './stack';
+export { RootStack } from './stacks';
 export { useRootNavigation, useRootRoute } from './hooks';
-export type { RootStackParamList } from './type';
+export type { RootStackParamList } from './types';
 export type { RootNavigationProp } from './hooks';
 
 export const RootNavigator = () => {
